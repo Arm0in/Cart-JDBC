@@ -8,14 +8,17 @@ public class Product {
     private String brand;
     private String description;
     private BigDecimal price;
+    private int stock;
     private Category category;
 
-    public Product(int id, String name, String brand, String description, BigDecimal price, Category category) {
+
+    public Product(int id, String name, String brand, String description, BigDecimal price, int stock, Category category) {
         this.id = id;
         this.name = name;
         this.brand = brand;
         this.description = description;
         this.price = price;
+        this.stock = stock;
         this.category = category;
     }
 
@@ -27,6 +30,7 @@ public class Product {
                 ", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", stock=" + stock +
                 ", category=" + category.getTitle() +
                 ']';
     }
@@ -69,6 +73,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public Category getCategory() {

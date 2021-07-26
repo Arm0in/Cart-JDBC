@@ -23,7 +23,8 @@ public class ProductRepository implements BaseRepository<Product> {
                                 resultSet.getString(3),
                                 resultSet.getString(4),
                                 resultSet.getBigDecimal(5),
-                                new CategoryRepository().getById(resultSet.getInt(6))
+                                resultSet.getInt(6),
+                                new CategoryRepository().getById(resultSet.getInt(7))
                         )
                 );
                 return products;
@@ -49,7 +50,8 @@ public class ProductRepository implements BaseRepository<Product> {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getBigDecimal(5),
-                        new CategoryRepository().getById(resultSet.getInt(6))
+                        resultSet.getInt(6),
+                        new CategoryRepository().getById(resultSet.getInt(7))
                 );
                 return product;
             }
@@ -64,12 +66,13 @@ public class ProductRepository implements BaseRepository<Product> {
     public void save(Product product) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("insert into products (`name`, brand, description, price, category_id) values(?, ?, ?, ?, ?)");
+                    ("insert into products (`name`, brand, description, price, stock, category_id) values(?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getBrand());
             preparedStatement.setString(3, product.getDescription());
             preparedStatement.setBigDecimal(4, product.getPrice());
-            preparedStatement.setInt(5, product.getCategory().getId());
+            preparedStatement.setInt(5, product.getStock());
+            preparedStatement.setInt(6, product.getCategory().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -80,13 +83,14 @@ public class ProductRepository implements BaseRepository<Product> {
     public void update(Product product) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("update products set `name` = ?, brand = ?, description = ?, price = ?, category_id = ? where id = ?");
+                    ("update products set `name` = ?, brand = ?, description = ?, price = ?, stock = ?, category_id = ? where id = ?");
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getBrand());
             preparedStatement.setString(3, product.getDescription());
             preparedStatement.setBigDecimal(4, product.getPrice());
-            preparedStatement.setInt(5, product.getCategory().getId());
-            preparedStatement.setInt(6, product.getId());
+            preparedStatement.setInt(5, product.getStock());
+            preparedStatement.setInt(6, product.getCategory().getId());
+            preparedStatement.setInt(7, product.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

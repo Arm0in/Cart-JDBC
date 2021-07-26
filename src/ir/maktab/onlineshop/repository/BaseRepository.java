@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 public interface BaseRepository<T> {
-    ConnectionInitializer connectDb = new ConnectionInitializer("hw8db", "root", "@A135246789a");
-    Connection connection = connectDb.getConnection();
+
+    Connection connection = ConnectionInitializer.connect();
 
     ArrayList<T> getAll();
 

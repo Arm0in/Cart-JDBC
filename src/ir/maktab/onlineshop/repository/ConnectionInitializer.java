@@ -5,25 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionInitializer {
-    private Connection connection;
-    private String dbName;
-    private String user;
-    private String password;
+    private static final String DB_NAME = "hw8db";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "@A135246789a";
 
-    public ConnectionInitializer(String dbName, String user, String password) {
-        this.dbName = dbName;
-        this.user = user;
-        this.password = password;
+    public static Connection connect() {
         try {
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/" + dbName,
-                    user, password);
+            return DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/" + DB_NAME,
+                    DB_USERNAME, DB_PASSWORD);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error In DataBase Connection : " + throwables);
+            return null;
         }
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 }
