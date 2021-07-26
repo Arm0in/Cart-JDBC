@@ -103,10 +103,10 @@ public class UserRepository implements BaseRepository<User> {
         }
     }
 
-    public User login(String username, String password) {
+    public User getByUserPass(String username, String password) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("select * from users where username = ? and password = ? and status = 1");
+                    ("select * from users where username = ? and password = ?");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();

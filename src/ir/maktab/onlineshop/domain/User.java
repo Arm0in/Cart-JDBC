@@ -12,6 +12,9 @@ public class User {
     private boolean status;
     private BigDecimal balance;
 
+    public User() {
+
+    }
 
     public User(int id, String userName, String nationalCode, LocalDate birthday, boolean status, BigDecimal balance) {
         this.id = id;
