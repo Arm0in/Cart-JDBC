@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Helper {
 
-    public static boolean check(Scanner scanner, String question) {
+    public static boolean check(String question) {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(question + " (y/n)");
-            String chosenItem = scanner.nextLine();
-            if (chosenItem == "y")
+            char chosenItem = scanner.nextLine().charAt(0);
+            if (chosenItem == 'y')
                 return true;
-            if (chosenItem == "n")
+            if (chosenItem == 'n')
                 return false;
         }
     }

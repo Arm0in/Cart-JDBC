@@ -1,6 +1,7 @@
 package ir.maktab.onlineshop.repository;
 
 import ir.maktab.onlineshop.domain.Admin;
+import ir.maktab.onlineshop.domain.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,4 +91,26 @@ public class AdminRepository implements BaseRepository<Admin> {
             throwables.printStackTrace();
         }
     }
+
+    public Admin getByUserPass(String username, String password) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from admins where username = ? and password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Admin admin = new Admin(
+                        resultSet.getInt(1),
+                        resultSet.getString(2)
+                );
+                return admin;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
 }
