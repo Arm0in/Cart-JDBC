@@ -24,7 +24,7 @@ public class MainMenu extends Menu {
                 case "1":
                     User currentUser = UserController.login();
                     if (currentUser != null)
-                        new UserMenu().run();
+                        new UserMenu().run(currentUser);
                     break;
                 case "2":
                     UserController.register();
@@ -32,13 +32,14 @@ public class MainMenu extends Menu {
                 case "3":
                     Admin currentAdmin = AdminController.login();
                     if (currentAdmin != null)
-                        new AdminMenu().run();
+                        new AdminMenu().run(currentAdmin);
                     break;
                 case "4":
-                    Helper.check("Are you sure you want to exit?");
-                    break;
+                    if (Helper.check("Are you sure you want to exit?"))
+                        System.exit(0);
                 default:
                     System.out.println("Wrong!");
+                    break;
             }
         }
     }

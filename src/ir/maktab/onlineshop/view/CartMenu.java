@@ -1,17 +1,18 @@
 package ir.maktab.onlineshop.view;
 
 import ir.maktab.onlineshop.domain.User;
+import ir.maktab.onlineshop.service.CartController;
 import ir.maktab.onlineshop.service.ProductController;
-import ir.maktab.onlineshop.service.UserController;
 import ir.maktab.onlineshop.service.helper.Helper;
 
-public class UserMenu extends Menu {
-    public UserMenu() {
+public class CartMenu extends Menu{
+    public CartMenu() {
         super(new String[]{
-                "View All Products",
-                "Charge account",
-                "Shop",
-                "Logout"
+                "Add to Cart",
+                "Remove from Cart",
+                "View Cart",
+                "Cart Sum",
+                "Checkout"
         });
     }
 
@@ -21,17 +22,19 @@ public class UserMenu extends Menu {
             String chosenItem = scanner.nextLine();
             switch (chosenItem) {
                 case "1":
-                    ProductController.viewAllProducts();
+                    CartController.addToCart();
                     break;
                 case "2":
-                    UserController.chargeAccount(currentUser);
+                    CartController.removeFromCart();
                     break;
                 case "3":
-                    new CartMenu().run(currentUser);
+                    CartController.viewCart();
                     break;
                 case "4":
-                    if (Helper.check("Are you sure you want to Logout?"))
-                        new MainMenu().run();
+                    System.out.println("Total Sum = " + CartController.cartTotalCost());
+                    break;
+                case "5":
+                    CartController.checkout(currentUser);
                     break;
                 default:
                     System.out.println("Wrong!");

@@ -24,9 +24,8 @@ public class UserRepository implements BaseRepository<User> {
                                 resultSet.getBigDecimal(7)
                         )
                 );
-                return users;
             }
-            return null;
+            return users;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
@@ -49,6 +48,7 @@ public class UserRepository implements BaseRepository<User> {
                         resultSet.getBoolean(6),
                         resultSet.getBigDecimal(7)
                 );
+                user.setPassword(resultSet.getString(3));
                 return user;
             }
             return null;
@@ -119,6 +119,7 @@ public class UserRepository implements BaseRepository<User> {
                         resultSet.getBoolean(6),
                         resultSet.getBigDecimal(7)
                 );
+                user.setPassword(resultSet.getString(3));
                 return user;
             }
             return null;

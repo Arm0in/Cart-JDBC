@@ -3,6 +3,7 @@ package ir.maktab.onlineshop.service;
 import ir.maktab.onlineshop.domain.User;
 import ir.maktab.onlineshop.repository.UserRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -40,6 +41,15 @@ public class UserController {
         user.setBirthday(LocalDate.parse(str, dtf));
         userRepository.save(user);
         System.out.println("Registered successfully.");
+    }
+
+    public static void chargeAccount(User currentUser) {
+        User user = new UserRepository().getById(currentUser.getId());
+        System.out.println("Enter amount you want to charge: ");
+        String addAmount = scanner.nextLine();
+        user.setBalance(user.getBalance().add(new BigDecimal(addAmount)));
+        new UserRepository().update(user);
+        System.out.println("Your account charged successfully");
     }
 
 
