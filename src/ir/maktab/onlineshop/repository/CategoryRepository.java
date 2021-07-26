@@ -23,9 +23,8 @@ public class CategoryRepository implements BaseRepository<Category> {
                                 resultSet.getString(3)
                         )
                 );
-                return categories;
             }
-            return null;
+            return categories;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;

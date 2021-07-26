@@ -1,5 +1,6 @@
 package ir.maktab.onlineshop.view;
 
+import ir.maktab.onlineshop.domain.Admin;
 import ir.maktab.onlineshop.service.AdminController;
 import ir.maktab.onlineshop.service.helper.Helper;
 
@@ -11,7 +12,7 @@ public class AdminMenu extends Menu {
         });
     }
 
-    public void run() {
+    public void run(Admin currentAdmin) {
         while (true) {
             showMenu();
             String chosenItem = scanner.nextLine();

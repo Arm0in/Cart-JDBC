@@ -23,9 +23,8 @@ public class AdminRepository implements BaseRepository<Admin> {
                                 resultSet.getString(2)
                         )
                 );
-                return admins;
             }
-            return null;
+            return admins;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;

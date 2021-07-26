@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     private String[] menuItems;
-    Scanner scanner;
+    Scanner scanner = new Scanner(System.in);
 
     public Menu(String[] menuItems) {
         this.menuItems = menuItems;

@@ -27,9 +27,8 @@ public class ProductRepository implements BaseRepository<Product> {
                                 new CategoryRepository().getById(resultSet.getInt(7))
                         )
                 );
-                return products;
             }
-            return null;
+            return products;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
