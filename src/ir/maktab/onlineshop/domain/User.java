@@ -13,11 +13,13 @@ public class User {
     private BigDecimal balance;
 
 
-    public User(int id, String userName, String nationalCode, LocalDate birthday) {
+    public User(int id, String userName, String nationalCode, LocalDate birthday, boolean status, BigDecimal balance) {
         this.id = id;
         this.userName = userName;
         this.nationalCode = nationalCode;
         this.birthday = birthday;
+        this.status = status;
+        this.balance = balance;
     }
 
     @Override
