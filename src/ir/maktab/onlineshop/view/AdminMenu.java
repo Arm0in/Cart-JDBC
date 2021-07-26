@@ -1,13 +1,12 @@
 package ir.maktab.onlineshop.view;
 
+import ir.maktab.onlineshop.service.AdminController;
 import ir.maktab.onlineshop.service.helper.Helper;
 
-public class UserMenu extends Menu {
-    public UserMenu() {
+public class AdminMenu extends Menu {
+    public AdminMenu() {
         super(new String[]{
-                "View All Products",
-                "Add to Cart",
-                "View Cart",
+                "Change User Status",
                 "Logout"
         });
     }
@@ -18,15 +17,9 @@ public class UserMenu extends Menu {
             String chosenItem = scanner.nextLine();
             switch (chosenItem) {
                 case "1":
-
+                    AdminController.changeUserStatus();
                     break;
                 case "2":
-
-                    break;
-                case "3":
-
-                    break;
-                case "4":
                     if (Helper.check("Are you sure you want to Logout?"))
                         new MainMenu().run();
                     break;
