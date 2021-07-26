@@ -103,4 +103,29 @@ public class UserRepository implements BaseRepository<User> {
         }
     }
 
+    public User login(String username, String password) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from users where username = ? and password = ? and status = 1");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(4),
+                        resultSet.getDate(5).toLocalDate(),
+                        resultSet.getBoolean(6),
+                        resultSet.getBigDecimal(7)
+                );
+                return user;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
 }

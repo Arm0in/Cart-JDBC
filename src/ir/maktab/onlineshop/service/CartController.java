@@ -1,6 +1,6 @@
 package ir.maktab.onlineshop.service;
 
-public class Cart {
+public class CartController {
 
 
 }
